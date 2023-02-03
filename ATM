@@ -1,0 +1,84 @@
+import java.util.Scanner;
+public class ATM {
+    public static void main(String args[]){
+        String username;
+        String password;
+        int balance=50000;
+        int withdraw;
+        int deposit;
+        int transfer;
+        int transaction=0;
+
+        Scanner sc= new Scanner(System.in);
+
+        System.out.println("Enter username");
+        String user_name=sc.nextLine();
+        System.out.println("Enter password");
+        String pass=sc.nextLine();
+        if(user_name.equals("pratham")&&(pass.equals("123"))){
+            System.out.println("Logged successfully");
+
+        }
+        else{
+            System.out.println("Incorrect username and password");
+
+        }System.out.println();
+        while(true){
+            System.out.println("WELCOME");
+            System.out.println("1. Withdraw");
+            System.out.println("2. Deposit");
+            System.out.println("3. Transfer");
+            System.out.println("4. Check Balance");
+            System.out.println("5. Exit");
+            System.out.println();
+            int ch=sc.nextInt();
+            switch(ch){
+                case 1: System.out.println("Enter the amount to withdraw:");
+                    withdraw=sc.nextInt();
+                    if(balance>=withdraw){
+                        balance=balance-withdraw;
+                        System.out.println("Collect your money and remove the card");
+                        System.out.println("Available balance is:"+balance);
+                        System.out.println("Transaction history of withdrawn:"+withdraw);
+                    }
+                    else{
+                        System.out.println("Insufficient Balance");
+                    }
+                    System.out.println();
+                    break;
+                case 2: System.out.println("Enter the amount to be deposited");
+                    deposit=sc.nextInt();
+                    if(deposit<=balance){
+                        balance=deposit+balance;
+                        System.out.println("Your money has been successfully deposited");
+                        System.out.println("Available balance is:"+deposit);
+                        String trans2="\tRs deposited -"+balance;
+                        System.out.println("Transaction history of deposit:"+deposit);
+                    }
+                    else{
+                        System.out.println("Enter the minimum deposit balance to get deposited");
+                    }
+                    System.out.println();
+                    break;
+                case 3: System.out.println("Enter the amount you want to transfer");
+                    transfer=sc.nextInt();
+                    if(transfer<=balance){
+                        balance-=transfer;
+                        System.out.println("Money transferred successfully!");
+                        System.out.println("After transfer available balance is:"+balance);
+                        String trans1="\tRs Transferred ="+balance;
+                        System.out.println("Transaction history of transfer:"+transfer);
+
+                    }
+                    System.out.println();
+                    break;
+                case 4: System.out.println("Total balance is:"+balance);
+                    System.out.println();
+                    break;
+                case 5: System.exit(0);
+            }
+        }
+
+
+    }
+}
